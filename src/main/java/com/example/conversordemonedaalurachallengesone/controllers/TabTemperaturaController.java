@@ -1,4 +1,4 @@
-package com.example.conversordemonedaalurachallengesone;
+package com.example.conversordemonedaalurachallengesone.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;

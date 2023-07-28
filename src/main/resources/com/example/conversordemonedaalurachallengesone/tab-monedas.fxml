@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.conversordemonedaalurachallengesone.TabMonedasController">
+            fx:controller="com.example.conversordemonedaalurachallengesone.controllers.TabMonedasController">
     <GridPane layoutX="134.0" layoutY="89.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
         <columnConstraints>
@@ -36,13 +36,13 @@
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </Label>
-                <TextField fx:id="inDinero" onKeyTyped="#checkOut" promptText="Ingrese una cantidad">
+                <TextField fx:id="inTextDinero" onKeyTyped="#checkOut" promptText="Ingrese una cantidad">
                     <VBox.margin>
                         <Insets/>
                     </VBox.margin>
                 </TextField>
             </VBox>
-            <ComboBox fx:id="inDivisa" prefWidth="150.0" promptText="\$$">
+            <ComboBox fx:id="BoxDivisaIn" prefWidth="150.0" promptText="\$$">
                 <HBox.margin>
                     <Insets top="30.0"/>
                 </HBox.margin>
@@ -58,13 +58,13 @@
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </Label>
-                <TextField fx:id="outDinero" editable="false" promptText="Escoja el tipo de cambio">
+                <TextField fx:id="outTextDinero" editable="false" promptText="Escoja el tipo de cambio">
                     <VBox.margin>
                         <Insets/>
                     </VBox.margin>
                 </TextField>
             </VBox>
-            <ComboBox fx:id="outDivisa" prefWidth="150.0" promptText="\$$">
+            <ComboBox fx:id="BoxDivisaOut" prefWidth="150.0" promptText="\$$">
                 <HBox.margin>
                     <Insets top="30.0"/>
                 </HBox.margin>
