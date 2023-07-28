@@ -3,6 +3,7 @@ module com.example.conversordemonedaalurachallengesone {
     requires javafx.fxml;
     requires java.net.http;
     requires com.google.gson;
+    requires org.jetbrains.annotations;
 
 
     opens com.example.conversordemonedaalurachallengesone to javafx.fxml;
