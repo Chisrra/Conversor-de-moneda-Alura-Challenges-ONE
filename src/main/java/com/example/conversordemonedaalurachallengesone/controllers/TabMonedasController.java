@@ -1,5 +1,7 @@
 package com.example.conversordemonedaalurachallengesone.controllers;
 
+import com.example.conversordemonedaalurachallengesone.CurrencyData;
+import com.example.conversordemonedaalurachallengesone.Finance;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -8,6 +10,9 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Pending
+ */
 public class TabMonedasController implements Initializable {
     @FXML
     private TextField inTextDinero;
@@ -46,15 +51,22 @@ public class TabMonedasController implements Initializable {
             updateOut(dinero, divisaIn, divisaOut);
         }catch (NumberFormatException ex) {
             outTextDinero.setText("Ingrese una cifra válida");
+            ex.printStackTrace();
+            System.err.println(ex);
         }
     }
 
     private void updateOut(double dinero, String divisaIn, String divisaOut) {
+        CurrencyData balance = Finance.convertCurrency(divisaIn, divisaOut);
 
-
-        double conversionRate = 0.05;
-        double resultado = dinero * conversionRate;
-        outTextDinero.setText(String.format("%.2f", resultado));
+        try {
+            assert balance != null;
+            double resultado = dinero * balance.currency();
+            outTextDinero.setText(String.format("%.6f", resultado));
+        } catch (AssertionError ex) {
+            outTextDinero.setText("Hay problemas para hacer la conversión");
+            ex.printStackTrace();
+        }
     }
 
 
