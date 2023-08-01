@@ -48,7 +48,7 @@ public class TabMonedasController implements Initializable {
         dineroText = inTextDinero.getText();
         try {
             double dinero = Double.parseDouble(dineroText);
-            updateOut(dinero, divisaIn, divisaOut);
+            updateOutText(dinero, divisaIn, divisaOut);
         }catch (NumberFormatException ex) {
             outTextDinero.setText("Ingrese una cifra válida");
             ex.printStackTrace();
@@ -56,7 +56,7 @@ public class TabMonedasController implements Initializable {
         }
     }
 
-    private void updateOut(double dinero, String divisaIn, String divisaOut) {
+    private void updateOutText(double dinero, String divisaIn, String divisaOut) {
         CurrencyData balance = Finance.convertCurrency(divisaIn, divisaOut);
 
         try {
