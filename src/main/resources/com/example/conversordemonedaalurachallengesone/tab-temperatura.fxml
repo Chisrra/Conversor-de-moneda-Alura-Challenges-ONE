@@ -1,67 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.conversordemonedaalurachallengesone.controllers.TabTemperaturaController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.conversordemonedaalurachallengesone.controllers.TabTemperaturaController">
 
-    <GridPane layoutX="134.0" layoutY="89.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+    <GridPane layoutX="134.0" layoutY="89.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
             <GridPane.margin>
-                <Insets/>
+                <Insets />
             </GridPane.margin>
             <VBox prefHeight="146.0" prefWidth="304.0">
                 <padding>
-                    <Insets right="20.0"/>
+                    <Insets right="20.0" />
                 </padding>
                 <Label text="¿Cuanto son?">
                     <VBox.margin>
-                        <Insets bottom="10.0"/>
+                        <Insets bottom="10.0" />
                     </VBox.margin>
                 </Label>
-                <TextField promptText="Ingrese una temperatura">
+                <TextField fx:id="inTemperature" onKeyTyped="#checkOut" promptText="Ingrese una temperatura">
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </TextField>
             </VBox>
-            <ComboBox prefWidth="150.0" promptText="°T">
+            <ComboBox fx:id="BoxDegreesIn" onAction="#checkOut" prefWidth="150.0" promptText="°T">
                 <HBox.margin>
-                    <Insets top="30.0"/>
+                    <Insets top="30.0" />
                 </HBox.margin>
             </ComboBox>
         </HBox>
         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
             <VBox prefHeight="146.0" prefWidth="304.0">
                 <padding>
-                    <Insets right="20.0"/>
+                    <Insets right="20.0" />
                 </padding>
                 <Label text="A...">
                     <VBox.margin>
-                        <Insets bottom="10.0"/>
+                        <Insets bottom="10.0" />
                     </VBox.margin>
                 </Label>
-                <TextField editable="false" promptText="Escoja una temperatura">
+                <TextField fx:id="outTemperature" editable="false" onKeyTyped="#checkOut" promptText="Escoja una temperatura">
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </TextField>
             </VBox>
-            <ComboBox prefWidth="150.0" promptText="°T">
+            <ComboBox fx:id="BoxDegreesOut" onAction="#checkOut" prefWidth="150.0" promptText="°T">
                 <HBox.margin>
-                    <Insets top="30.0"/>
+                    <Insets top="30.0" />
                 </HBox.margin>
             </ComboBox>
         </HBox>

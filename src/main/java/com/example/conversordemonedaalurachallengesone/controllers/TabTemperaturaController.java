@@ -1,5 +1,6 @@
 package com.example.conversordemonedaalurachallengesone.controllers;
 
+import com.example.conversordemonedaalurachallengesone.Temperature;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -10,47 +11,79 @@ import java.util.ResourceBundle;
 
 public class TabTemperaturaController implements Initializable {
     @FXML
-    private TextField inTemperatura;
+    private TextField inTemperature;
     @FXML
-    private TextField outTemperatura;
+    private TextField outTemperature;
     @FXML
-    private ComboBox<String> BoxGradosIn;
+    private ComboBox<String> BoxDegreesIn;
     @FXML
-    private ComboBox<String> BoxGradosOut;
+    private ComboBox<String> BoxDegreesOut;
 
-    private final String[] grados = {"°C", "°F", "°K"};
+    private final String[] degreesOptions = {"°C", "°F", "°K"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        BoxGradosIn.getItems().addAll(grados);
-        BoxGradosOut.getItems().addAll(grados);
+        BoxDegreesIn.getItems().addAll(degreesOptions);
+        BoxDegreesOut.getItems().addAll(degreesOptions);
     }
 
     @FXML
     protected void checkOut() {
-        String gradosIn;
-        String gradosOut;
+        if(inTemperature.getText().isEmpty()) return;
+
+        String degreesIn;
+        String degreesOut;
 
         try {
-            gradosIn = BoxGradosIn.getValue().toLowerCase();
-            gradosOut = BoxGradosOut.getValue().toLowerCase();
+            degreesIn = BoxDegreesIn.getValue().toUpperCase();
+            degreesOut = BoxDegreesOut.getValue().toUpperCase();
         } catch (NullPointerException ex) {
-            outTemperatura.setText("Seleccione la temperatura de entrada y la de salida");
+            outTemperature.setText("Seleccione la temperatura de entrada y la de salida");
             return;
         }
 
         try {
-            double grados = Double.parseDouble(inTemperatura.getText());
-            upDateOutText(grados, gradosIn, gradosOut);
+            double grados = Double.parseDouble(inTemperature.getText());
+            upDateOutText(grados, degreesIn, degreesOut);
         } catch (NumberFormatException ex) {
-            outTemperatura.setText("Ingrese una cifra valida");
-            System.err.println(ex);
+            outTemperature.setText("Ingrese una cifra valida");
             ex.printStackTrace();
         }
     }
 
-    private void upDateOutText(double grados, String gradosIn, String gradosOut) {
+    private void upDateOutText(double degrees, String degreesIn, String degreesOut) {
 
+        if (degreesIn.equals("°C") && degreesOut.equals("°F")) {
+            outTemperature.setText(formatResult(Temperature.celsiusToFahrenheit(degrees)));
+            return;
+        }
+        if (degreesIn.equals("°C") && degreesOut.equals("°K")) {
+            outTemperature.setText(formatResult(Temperature.celsiusToKelvin(degrees)));
+            return;
+        }
+        if (degreesIn.equals("°F") && degreesOut.equals("°C")) {
+            outTemperature.setText(formatResult(Temperature.fahrenheitToCelsiuc(degrees)));
+            return;
+        }
+        if (degreesIn.equals("°F") && degreesOut.equals("°K")) {
+            outTemperature.setText(formatResult(Temperature.fahrenheitToKelvin(degrees)));
+            return;
+        }
+        if (degreesIn.equals("°K") && degreesOut.equals("°C")) {
+            outTemperature.setText(formatResult(Temperature.kelvinToCelsius(degrees)));
+            return;
+        }
+        if (degreesIn.equals("°K") && degreesOut.equals("°F")) {
+            outTemperature.setText(formatResult(Temperature.kelvinToFahrenheit(degrees)));
+            return;
+        }
+
+        outTemperature.setText(formatResult(degrees));
+
+    }
+
+    private String formatResult(double degrees) {
+        return String.format("%.6f", degrees);
     }
 
 }
