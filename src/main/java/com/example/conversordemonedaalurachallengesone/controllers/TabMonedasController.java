@@ -33,9 +33,10 @@ public class TabMonedasController implements Initializable {
 
     @FXML
     protected void checkOut() {
+        if(inTextDinero.getText().isEmpty()) return;
+
         String divisaIn;
         String divisaOut;
-        String dineroText;
 
         try {
             divisaIn = BoxDivisaIn.getValue().toLowerCase();
@@ -45,14 +46,12 @@ public class TabMonedasController implements Initializable {
             return;
         }
 
-        dineroText = inTextDinero.getText();
         try {
-            double dinero = Double.parseDouble(dineroText);
+            double dinero = Double.parseDouble(inTextDinero.getText());
             updateOutText(dinero, divisaIn, divisaOut);
         }catch (NumberFormatException ex) {
             outTextDinero.setText("Ingrese una cifra válida");
             ex.printStackTrace();
-            System.err.println(ex);
         }
     }
 
