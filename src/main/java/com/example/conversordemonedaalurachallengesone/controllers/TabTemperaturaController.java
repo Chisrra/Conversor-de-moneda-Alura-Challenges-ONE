@@ -62,7 +62,7 @@ public class TabTemperaturaController implements Initializable {
             return;
         }
         if (degreesIn.equals("°F") && degreesOut.equals("°C")) {
-            outTemperature.setText(formatResult(Temperature.fahrenheitToCelsiuc(degrees)));
+            outTemperature.setText(formatResult(Temperature.fahrenheitToCelsius(degrees)));
             return;
         }
         if (degreesIn.equals("°F") && degreesOut.equals("°K")) {
