@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -56,10 +57,16 @@ public class TabMonedasController implements Initializable {
     }
 
     private void updateOutText(double dinero, String divisaIn, String divisaOut) {
-        CurrencyData balance = Finance.convertCurrency(divisaIn, divisaOut);
+        CurrencyData balance;
+        try {
+            balance = Finance.convertCurrency(divisaIn, divisaOut);
+        } catch (InterruptedException | IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
         try {
-            assert balance != null;
             double resultado = dinero * balance.currency();
             outTextDinero.setText(String.format("%.6f", resultado));
         } catch (AssertionError ex) {
