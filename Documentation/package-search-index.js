@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.conversordemonedaalurachallengesone","l":"com.example.conversordemonedaalurachallengesone"},{"m":"com.example.conversordemonedaalurachallengesone","l":"com.example.conversordemonedaalurachallengesone.controllers"}];updateSearchResults();
