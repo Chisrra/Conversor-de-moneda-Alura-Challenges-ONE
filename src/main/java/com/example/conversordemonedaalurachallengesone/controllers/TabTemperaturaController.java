@@ -9,6 +9,15 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the "TabTemperaruta" tab in the currency and temperature convert application.
+ * This controller handles the user interactions and updates the view accordingly for the temperature conversion.
+ * It allows user input a temperature values in one unit and select another unit for conversion.
+ * The supported temperature units are: Celsius(°C), Fahrenheit(°F) and Kelvin(°K).
+ *
+ * @author Chisrra
+ * @version 1.0
+ */
 public class TabTemperaturaController implements Initializable {
     @FXML
     private TextField inTemperature;
@@ -21,15 +30,26 @@ public class TabTemperaturaController implements Initializable {
 
     private final String[] degreesOptions = {"°C", "°F", "°K"};
 
+    /**
+     * Initialize the controller by populating the {@code ComboBox<String, String> with temperature unit options.*
+     * @param url            The location used to resolve relative paths for the root object, or {@code null} if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or {@code null} if the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         BoxDegreesIn.getItems().addAll(degreesOptions);
         BoxDegreesOut.getItems().addAll(degreesOptions);
     }
 
+    /**
+     * Handle the "Convert" key typed action when the user types.
+     * Check all information necessary has been obtained and that is in the correct format, if not, notify the user.
+     * <p></p>
+     * If all the information is correct, it retrieves the selected currencies and the amount input to proceed with the currency conversion by the calling private method {@link #upDateOutText(double, String, String)}.
+     */
     @FXML
     protected void checkOut() {
-        if(inTemperature.getText().isEmpty()) return;
+        if (inTemperature.getText().isEmpty()) return;
 
         String degreesIn;
         String degreesOut;
@@ -51,6 +71,14 @@ public class TabTemperaturaController implements Initializable {
         }
     }
 
+    /**
+     * Perform the temperature conversion and update the output TextField with the converted temperature.
+     *
+     * @param degrees The input temperature value.
+     * @param degreesIn The input temperature unit (e.g. "°C").
+     * @param degreesOut The target temperature unit (e.g. "°F").
+     * @see Temperature
+     */
     private void upDateOutText(double degrees, String degreesIn, String degreesOut) {
 
         if (degreesIn.equals("°C") && degreesOut.equals("°F")) {
@@ -82,6 +110,12 @@ public class TabTemperaturaController implements Initializable {
 
     }
 
+    /**
+     * Format the temperature value to {@code String} with a precision of six decimals places.
+     *
+     * @param degrees The temperature value to format
+     * @return The formatted temperature value as a {@code String}.
+     */
     private String formatResult(double degrees) {
         return String.format("%.6f", degrees);
     }

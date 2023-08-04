@@ -13,6 +13,8 @@ import java.net.http.HttpResponse;
 
 /**
  * This interface provides methods to perform currency conversions using exchange rate web service that is update once a day.
+ *
+ * @author Chisrra
  */
 public interface Finance {
 
@@ -20,10 +22,10 @@ public interface Finance {
      * Converts a source currency to a target currency.
      *
      * @param from The source currency.
-     * @param to The target currency.
+     * @param to   The target currency.
      * @return A {@code CurrencyData} object containing tha conversion information.
      * @throws InterruptedException If the execution of the application is interrupted.
-     * @throws IOException If an input/output error occurs during the HTTP request.
+     * @throws IOException          If an input/output error occurs during the HTTP request.
      */
     static CurrencyData convertCurrency(String from, String to) throws InterruptedException, IOException {
         if (from == null || to == null) {
@@ -49,13 +51,13 @@ public interface Finance {
 
     /**
      * Sends a GET request to the URL provided and return the response in JSON format.
-     * 
+     *
      * @param uri The {@code URI} of the request.
      * @return The response of the request in JSON format.
-     * @throws IOException If an input/output error occurs during the request.
+     * @throws IOException          If an input/output error occurs during the request.
      * @throws InterruptedException If the execution of the request is interrupted.
      */
-    private static String sendGETRequest(URI uri) throws IOException, InterruptedException  {
+    private static String sendGETRequest(URI uri) throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(uri)
@@ -75,6 +77,7 @@ public interface Finance {
     private static Map<String, String> parseJson(String jsonResponse) {
         Gson gson = new Gson();
         // Use a TypeToken to indicate that the result is a Map<String, String>.
-        return gson.fromJson(jsonResponse, new TypeToken<Map<String, String>>() {}.getType());
+        return gson.fromJson(jsonResponse, new TypeToken<Map<String, String>>() {
+        }.getType());
     }
 }

@@ -2,6 +2,8 @@ package com.example.conversordemonedaalurachallengesone;
 
 /**
  * Interface providing methods to perform temperature conversions between different scales.
+ *
+ * @author Chisrra
  */
 public interface Temperature {
 
